@@ -561,6 +561,165 @@
             font-weight: 600;
         }
 
+        /* ===== Video Showcase Section ===== */
+        .video-showcase {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: -1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .featured-video {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        body.light-theme .featured-video {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-video:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-wrapper iframe,
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .video-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .video-info p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .video-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .video-stats i {
+            color: var(--primary-color);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        body.light-theme .video-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .video-card .video-wrapper {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        .video-card .video-wrapper iframe,
+        .video-card .video-wrapper video {
+            border-radius: 0;
+        }
+
+        .video-card-info {
+            padding: 1.5rem;
+        }
+
+        .video-card-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .video-card-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .video-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+        }
+
+        .video-meta i {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
         /* ===== Skills Section ===== */
         .skills {
             padding: 5rem 0;
@@ -1355,6 +1514,31 @@
             }
         }
 
+        /* ===== Video Modal Specific Styles ===== */
+        .modal-video-player {
+            width: 100%;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .modal-video-player video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #videoModal .modal-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        #videoModal .modal-info {
+            flex: 1;
+        }
+
         /* ===== Contact Section ===== */
         .contact {
             padding: 5rem 0;
@@ -1919,6 +2103,73 @@
             .scroll-progress {
                 width: 3px;
             }
+
+            /* Video Showcase Responsive */
+            .video-showcase {
+                padding: 3rem 0;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .featured-video {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .video-info h3 {
+                font-size: 1.4rem;
+            }
+
+            .video-stats {
+                gap: 1rem;
+            }
+
+            .video-stats span {
+                font-size: 0.85rem;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .video-card-info {
+                padding: 1.2rem;
+            }
+
+            .video-card-info h4 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .featured-video {
+                padding: 1rem;
+            }
+
+            .video-info h3 {
+                font-size: 1.2rem;
+            }
+
+            .video-info p {
+                font-size: 0.9rem;
+            }
+
+            .video-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .video-card-info h4 {
+                font-size: 1rem;
+            }
+
+            .video-card-info p {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -1945,6 +2196,7 @@
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Beranda</a></li>
                 <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="#videos" class="nav-link">Video</a></li>
                 <li><a href="#skills" class="nav-link">Keahlian</a></li>
                 <li><a href="#projects" class="nav-link">Proyek</a></li>
                 <li><a href="#contact" class="nav-link">Kontak</a></li>
@@ -1978,6 +2230,112 @@
                 <div class="image-placeholder">
                     <!-- Foto Profil Anda -->
                     <img src="images/profile/profile.jpg" alt="Foto Profil" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section id="videos" class="video-showcase">
+        <div class="container">
+            <h2 class="section-title">Demo Reel & Highlights</h2>
+            <p class="section-subtitle">Koleksi karya terbaik dan highlight video editing saya</p>
+            
+            <!-- Featured Video -->
+            <div class="featured-video">
+                <div class="video-wrapper">
+                    <video
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        controls
+                        poster="images/projects/vlog.png">
+                        <source src="videos/neng.mp4" type="video/mp4">
+                        <source src="videos/neng.webm" type="video/webm">
+                        Browser Anda tidak mendukung video HTML5.
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>Video Showcase 2024</h3>
+                    <p>Koleksi video terbaik dari berbagai proyek live streaming, video editing, dan konten kreatif yang telah saya kerjakan.</p>
+                    <div class="video-stats">
+                        <span><i class="fas fa-eye"></i> 10K+ Views</span>
+                        <span><i class="fas fa-clock"></i> 3:45</span>
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="video-grid">
+                <div class="video-card" data-video="1">
+                    <div class="video-wrapper">
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            controls
+                            poster="images/projects/vlog.png">
+                            <source src="videos/aag.mp4" type="video/mp4">
+                            <source src="videos/aag.webm" type="video/webm">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
+                    </div>
+                    <div class="video-card-info">
+                        <h4>Cinematic Vlog Editing</h4>
+                        <p>Tutorial dan showcase editing vlog dengan style cinematic</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-eye"></i> 5K</span>
+                            <span><i class="fas fa-clock"></i> 2:30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-video="2">
+                    <div class="video-wrapper">
+                        <video
+                            loop
+                            playsinline
+                            controls
+                            poster="images/projects/musikk.jfif">
+                            <source src="videos/AVENGED SEVENFOLD BEST OF ROCK SONG COLLECTION 2025💀.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
+                    </div>
+                    <div class="video-card-info">
+                        <h4>Color Grading Masterclass</h4>
+                        <p>Teknik professional color grading untuk video</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-eye"></i> 8K</span>
+                            <span><i class="fas fa-clock"></i> 5:15</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-video="3">
+                    <div class="video-wrapper">
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            controls
+                            poster="images/projects/motion.jfif">
+                            <source src="videos/motion-graphics.mp4" type="video/mp4">
+                            <source src="videos/motion-graphics.webm" type="video/webm">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
+                    </div>
+                    <div class="video-card-info">
+                        <h4>Motion Graphics Pack</h4>
+                        <p>Koleksi motion graphics dan animasi untuk video</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-eye"></i> 12K</span>
+                            <span><i class="fas fa-clock"></i> 4:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2101,7 +2459,7 @@
                 </div>
                 <div class="project-card" data-category="editing" data-project="2">
                     <div class="project-image">
-                        <img src="images/projects/musikk.jfif" alt="Music Video Production">
+                        <img src="images/projects/musikk.jfif" alt="Folder Musik">
                         <div class="project-icon">
                             <i class="fas fa-film"></i>
                         </div>
@@ -2112,7 +2470,7 @@
                     </div>
                     <div class="project-content">
                         <span class="project-category">Video Editing</span>
-                        <h3>Music Video Production</h3>
+                        <h3>Folder Musik</h3>
                         <p>Produksi music video dengan color grading profesional dan visual storytelling yang kuat</p>
                         <div class="project-tags">
                             <span class="tag">DaVinci Resolve</span>
@@ -2188,6 +2546,45 @@
                                 <a href="#" class="modal-link btn btn-primary" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                                 <a href="#" class="modal-link btn btn-secondary" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content">
+                <div class="modal-video-player">
+                    <video id="modalVideo" controls>
+                        <source src="" type="video/mp4">
+                        Browser Anda tidak mendukung video HTML5.
+                    </video>
+                </div>
+                <div class="modal-info">
+                    <h2 id="videoModalTitle"></h2>
+                    <span class="project-category" id="videoModalCategory"></span>
+                    <p class="project-description" id="videoModalDescription"></p>
+                    <div class="modal-details">
+                        <div class="detail-item">
+                            <strong>Tools:</strong>
+                            <div class="modal-tags" id="videoModalTools"></div>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Views:</strong>
+                            <span id="videoModalViews"></span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Duration:</strong>
+                            <span id="videoModalDuration"></span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Release:</strong>
+                            <span id="videoModalRelease"></span>
                         </div>
                     </div>
                 </div>
@@ -2511,6 +2908,26 @@
             observer.observe(link);
         });
 
+        // ===== Animate Video Showcase Section =====
+        const sectionSubtitle = document.querySelector('.section-subtitle');
+        if (sectionSubtitle) {
+            sectionSubtitle.classList.add('fade-in-up');
+            observer.observe(sectionSubtitle);
+        }
+
+        const featuredVideo = document.querySelector('.featured-video');
+        if (featuredVideo) {
+            featuredVideo.classList.add('fade-in-up');
+            observer.observe(featuredVideo);
+        }
+
+        const videoCards = document.querySelectorAll('.video-card');
+        videoCards.forEach((card, index) => {
+            card.classList.add('fade-in-up');
+            card.style.transitionDelay = `${index * 0.15}s`;
+            observer.observe(card);
+        });
+
         // ===== Contact Form Handling =====
         const contactForm = document.querySelector('.contact-form');
 
@@ -2730,7 +3147,7 @@
                 repoLink: '#'
             },
             '2': {
-                title: 'Music Video Production',
+                title: 'Folder Musik',
                 category: 'Video Editing',
                 description: 'Produksi music video profesional dengan cinematography yang memukau dan color grading berkualitas tinggi. Menggabungkan storytelling visual dengan rhythm musik untuk hasil yang maksimal.',
                 technologies: ['DaVinci Resolve', 'After Effects', 'Color Grading', 'Premiere Pro'],
@@ -2996,6 +3413,129 @@
                 prevBtn?.click();
             } else if (e.key === 'ArrowRight') {
                 nextBtn?.click();
+            }
+        });
+
+        // ===== Video Modal Functionality =====
+        const videosData = {
+            '1': {
+                title: 'Cinematic Vlog Editing',
+                category: 'Vlog Production',
+                description: 'Video vlog cinematic dengan storytelling yang menarik, color grading profesional, dan audio mixing berkualitas tinggi. Cocok untuk content creator yang ingin meningkatkan kualitas konten mereka.',
+                videoSrc: 'videos/aag.mp4',
+                tools: ['Premiere Pro', 'DaVinci Resolve', 'After Effects'],
+                views: '125K',
+                duration: '3:45',
+                releaseDate: 'Desember 2024'
+            },
+            '2': {
+                title: 'Color Grading Masterclass',
+                category: 'Color Grading',
+                description: 'Demonstrasi teknik color grading profesional dengan hasil yang memukau. Menampilkan berbagai style grading dari cinematic look hingga commercial style dengan musik background yang engaging.',
+                videoSrc: 'videos/AVENGED SEVENFOLD BEST OF ROCK SONG COLLECTION 2025💀.mp4',
+                tools: ['DaVinci Resolve', 'Color Wheels', 'LUTs'],
+                views: '89K',
+                duration: '5:20',
+                releaseDate: 'November 2024'
+            },
+            '3': {
+                title: 'Motion Graphics Showreel',
+                category: 'Motion Design',
+                description: 'Koleksi motion graphics dan animasi terbaik termasuk logo animation, kinetic typography, dan visual effects. Menampilkan berbagai teknik animasi modern dan eye-catching.',
+                videoSrc: 'videos/motion-graphics.mp4',
+                tools: ['After Effects', 'Cinema 4D', 'Element 3D'],
+                views: '156K',
+                duration: '2:30',
+                releaseDate: 'Oktober 2024'
+            }
+        };
+
+        const videoModal = document.getElementById('videoModal');
+        const videoModalOverlay = videoModal.querySelector('.modal-overlay');
+        const videoModalClose = videoModal.querySelector('.modal-close');
+        const videoCardsClickable = document.querySelectorAll('.video-card');
+        const modalVideoElement = document.getElementById('modalVideo');
+
+        // Open Video Modal - Klik video card untuk membuka detail
+        videoCardsClickable.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const videoId = card.getAttribute('data-video');
+                const video = videosData[videoId];
+                
+                if (video) {
+                    openVideoModal(video);
+                } else {
+                    console.error('Video not found for ID:', videoId);
+                }
+            });
+
+            // Tambahkan visual feedback saat hover
+            card.style.cursor = 'pointer';
+        });
+
+        function openVideoModal(video) {
+            // Populate modal content
+            document.getElementById('videoModalTitle').textContent = video.title;
+            document.getElementById('videoModalCategory').textContent = video.category;
+            document.getElementById('videoModalDescription').textContent = video.description;
+
+            // Update video source
+            const videoSource = modalVideoElement.querySelector('source');
+            videoSource.src = video.videoSrc;
+            modalVideoElement.load();
+
+            // Get all detail items in video modal
+            const videoDetailItems = videoModal.querySelectorAll('.detail-item');
+            
+            // Update tools (first detail-item)
+            if (videoDetailItems[0]) {
+                videoDetailItems[0].querySelector('span').textContent = video.tools.join(', ');
+            }
+            
+            // Update views (second detail-item)
+            if (videoDetailItems[1]) {
+                videoDetailItems[1].querySelector('span').textContent = video.views;
+            }
+            
+            // Update duration (third detail-item)
+            if (videoDetailItems[2]) {
+                videoDetailItems[2].querySelector('span').textContent = video.duration;
+            }
+            
+            // Update release date (fourth detail-item)
+            if (videoDetailItems[3]) {
+                videoDetailItems[3].querySelector('span').textContent = video.releaseDate;
+            }
+
+            // Show modal
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Pause and reset video when closing modal
+            modalVideoElement.pause();
+            modalVideoElement.currentTime = 0;
+        }
+
+        // Close video modal events
+        if (videoModalClose) {
+            videoModalClose.addEventListener('click', closeVideoModal);
+        }
+
+        if (videoModalOverlay) {
+            videoModalOverlay.addEventListener('click', closeVideoModal);
+        }
+
+        // Close video modal with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeVideoModal();
             }
         });
 
