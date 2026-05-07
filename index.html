@@ -1264,10 +1264,16 @@
         }
 
         .modal-content {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
+            display: flex;
+            flex-direction: column;
             max-height: 90vh;
-            overflow: hidden;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .modal-content::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
 
         /* Skill Modal - No Grid, Full Width */
@@ -1401,23 +1407,9 @@
         /* ===== Modal Info ===== */
         .modal-info {
             padding: 2.5rem;
-            overflow-y: auto;
             background: var(--bg-primary);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-        }
-
-        .modal-info::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .modal-info::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        .modal-info::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
         }
 
         .modal-info h2 {
@@ -2279,16 +2271,12 @@
 
         /* ===== Modal Responsive ===== */
         @media (max-width: 968px) {
-            .modal-content {
-                grid-template-columns: 1fr;
-            }
-
             .modal-gallery {
                 max-height: 50vh;
             }
 
             .modal-info {
-                max-height: 40vh;
+                max-height: none;
             }
         }
 
@@ -2837,7 +2825,10 @@
                 </div>
                 <div class="project-card" data-category="editing" data-project="2">
                     <div class="project-image">
-                        <img src="images/projects/musikk.jfif" alt="Folder Musik">
+                        <video autoplay muted loop playsinline>
+                            <source src="images/projects/Musikk.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
                         <div class="project-icon">
                             <i class="fas fa-film"></i>
                         </div>
@@ -2859,7 +2850,10 @@
                 </div>
                 <div class="project-card" data-category="motion" data-project="3">
                     <div class="project-image">
-                        <img src="images/projects/motion.jfif" alt="Motion Graphics Package">
+                        <video autoplay muted loop playsinline>
+                            <source src="images/projects/Studio%20ndowee.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
                         <div class="project-icon">
                             <i class="fas fa-magic"></i>
                         </div>
@@ -3592,13 +3586,16 @@
                 ],
                 client: 'Independent Music Artist',
                 images: [
+                    'images/projects/live-videos/BREAKBEAT CONCRETE ANGEL SLOW REVERB 2026_ LIRIK CONCRETE ANGEL VIRAL TIKTOK _ DJ TELOOR.mp4',
                     'images/projects/live-videos/ormas.nomercy - 7633381140212108564.mp4',
                     'images/projects/live-videos/You Don\'t Even Know Me Breakbeat Remix [ReyLimitLess].mp4',
                     'images/projects/live-videos/aduhaduhduhhduh.mp4',
                     'images/projects/live-videos/Melodynya ngajak terbang  Final Countdown -- EzzaJunior.mp4',
                     'images/projects/live-videos/Let\'s fly.mp4',
                     'images/projects/live-videos/ormas.nomercy - 7631610003618811156.mp4',
-                    'images/projects/live-videos/Middle - Dj Breakbeat by  BeatMap x  KEDUT - Special Req By.mp4'
+                    'images/projects/live-videos/Middle - Dj Breakbeat by  BeatMap x  KEDUT - Special Req By.mp4',
+                    'images/projects/live-videos/Fly.mp4',
+                    'images/projects/live-videos/Dj Breakbeat Concrete Angel - Noka Axl.mp4'
                 ],
                 links: {
                     youtube: 'https://youtube.com/@username',
@@ -3620,6 +3617,7 @@
                 ],
                 client: 'Digital Marketing Agency',
                 images: [
+                    'images/projects/thumbnails/Studio ndowee.mp4',
                     'images/projects/motion.jfif',
                     'images/projects/motion.jfif',
                     'images/projects/motion.jfif',
