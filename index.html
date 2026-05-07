@@ -6,6 +6,7 @@
     <meta name="description" content="Portfolio Website - Menampilkan proyek dan keahlian saya">
     <title>Portfolio Saya</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <style>
         /* ===== CSS Variables ===== */
         :root {
@@ -2531,9 +2532,97 @@
                 font-size: 0.85rem;
             }
         }
+
+        /* ===== Splash Screen ===== */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(26, 26, 26, 0.9) 50%, rgba(0, 0, 0, 0.85) 100%);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash-loader {
+            width: 400px;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+
+        .splash-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        .splash-progress {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(255, 0, 0, 0.5),
+                             0 0 20px rgba(255, 0, 0, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
+                             0 0 40px rgba(255, 0, 0, 0.5),
+                             0 0 60px rgba(255, 0, 0, 0.3);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .splash-loader {
+                width: 300px;
+                height: 300px;
+            }
+
+            .splash-text {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <dotlottie-player
+            id="lottieLoader"
+            class="splash-loader"
+            src="https://lottie.host/e3b05ca0-e66f-45b2-832f-2f498225392f/t08PSjREOe.lottie"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay>
+        </dotlottie-player>
+        <div class="splash-text">Loading Portfolio</div>
+        <div class="splash-progress" id="splashProgress">0%</div>
+    </div>
+
     <!-- Scroll Progress Bar -->
     <div id="scrollProgress" class="scroll-progress"></div>
     
@@ -2826,8 +2915,7 @@
                 <div class="project-card" data-category="editing" data-project="2">
                     <div class="project-image">
                         <video autoplay muted loop playsinline>
-                            <source src="images/projects/Musikk.mp4" type="video/mp4">
-                            Browser Anda tidak mendukung video HTML5.
+                            <source src="images/projects/musikk.jfif" type="video/mp4">
                         </video>
                         <div class="project-icon">
                             <i class="fas fa-film"></i>
@@ -3064,6 +3152,39 @@
     </section>
 
     <script>
+        // ===== Splash Screen =====
+        window.addEventListener('load', () => {
+            const splashScreen = document.getElementById('splashScreen');
+            const splashProgress = document.getElementById('splashProgress');
+            let progress = 0;
+            
+            // Prevent scrolling while splash screen is active
+            document.body.style.overflow = 'hidden';
+            
+            // Simulate loading progress
+            const loadingInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(loadingInterval);
+                    
+                    // Wait a bit before hiding splash screen
+                    setTimeout(() => {
+                        splashScreen.classList.add('fade-out');
+                        document.body.style.overflow = ''; // Re-enable scrolling
+                        
+                        // Remove splash screen from DOM after animation
+                        setTimeout(() => {
+                            splashScreen.remove();
+                        }, 800);
+                    }, 500);
+                }
+                
+                splashProgress.textContent = Math.floor(progress) + '%';
+            }, 100);
+        });
+
         // ===== Particle Connection Animation =====
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
