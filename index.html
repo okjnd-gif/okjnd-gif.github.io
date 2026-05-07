@@ -192,6 +192,26 @@
             align-items: center;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .logo-img:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
         .logo h2 {
             font-size: 1.5rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -902,14 +922,16 @@
             opacity: 1;
         }
 
-        .project-image img {
+        .project-image img,
+        .project-image video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .project-card:hover .project-image img {
+        .project-card:hover .project-image img,
+        .project-card:hover .project-image video {
             transform: scale(1.1);
         }
 
@@ -1204,6 +1226,18 @@
             z-index: 10001;
         }
 
+        /* Skill Modal - Full Width */
+        #skillModal .modal-container {
+            width: 98vw;
+            max-width: 98vw;
+        }
+
+        /* Skill Modal - Medium Size (seperti col-md-7) */
+        #skillModal .modal-container {
+            width: 70%;
+            max-width: 1000px;
+        }
+
         .modal-close {
             position: absolute;
             top: 1.5rem;
@@ -1234,6 +1268,18 @@
             grid-template-columns: 1.5fr 1fr;
             max-height: 90vh;
             overflow: hidden;
+        }
+
+        /* Skill Modal - No Grid, Full Width */
+        .skill-modal-content {
+            display: block;
+            padding: 2rem;
+        }
+
+        /* Override untuk Skill Modal - No Grid */
+        .skill-modal-content {
+            display: block;
+            padding: 2rem;
         }
 
         /* ===== Modal Gallery ===== */
@@ -1341,10 +1387,15 @@
             opacity: 1;
         }
 
-        .thumbnail img {
+        .thumbnail img,
+        .thumbnail video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .thumbnail {
+            position: relative;
         }
 
         /* ===== Modal Info ===== */
@@ -1537,6 +1588,327 @@
 
         #videoModal .modal-info {
             flex: 1;
+        }
+
+        /* ===== Skill Modal Specific Styles ===== */
+        .skill-modal-content {
+            max-height: 90vh;
+            overflow-y: auto;
+            /* Hide scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        /* Hide scrollbar for Chrome, Safari, Opera */
+        .skill-modal-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Skill Modal Body Wrapper - Layout Full Width dengan Image di Pojok */
+        .skill-modal-body-wrapper {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .skill-modal-image {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .skill-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .skill-modal-image:hover .skill-image-overlay {
+            opacity: 1;
+        }
+
+        .skill-image-overlay i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .skill-modal-body {
+            width: 100%;
+            padding-left: 0;
+        }
+
+        .skill-modal-body .skill-section:first-child {
+            padding-top: 220px;
+        }
+
+        /* Responsive untuk mobile */
+        @media (max-width: 768px) {
+            .skill-modal-body-wrapper {
+                flex-direction: column;
+            }
+
+            .skill-modal-image {
+                flex: 0 0 auto;
+                position: relative;
+                top: 0;
+            }
+        }
+
+        .skill-modal-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .skill-modal-title-section {
+            flex: 1;
+        }
+
+        .skill-modal-title-section h2 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-primary);
+        }
+
+        .skill-level-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .skill-modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .skill-section {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .skill-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-section h3 i {
+            color: var(--primary-color);
+        }
+
+        .skill-experience {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        /* Progress Bars */
+        .skill-progress-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .skill-progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .skill-progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .skill-progress-percentage {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .skill-progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            transition: width 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Features List */
+        .skill-features-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-features-list li {
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .skill-features-list li::before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .skill-features-list li:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Projects Showcase */
+        .skill-projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-project-item {
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .skill-project-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .skill-project-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .skill-project-item:hover i {
+            color: white;
+        }
+
+        .skill-project-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .skill-project-item:hover .skill-project-name {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .skill-modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .skill-features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-projects-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* ===== Contact Section ===== */
@@ -2191,6 +2563,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
+                <img src="images/profile/d678f00d-2187-471c-8e3d-17ba6cb41a06.jfif" alt="Logo" class="logo-img">
                 <h2>Portfolio</h2>
             </div>
             <ul class="nav-menu">
@@ -2223,13 +2596,13 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">Lihat Proyek</a>
-                    <a href="#contact" class="btn btn-secondary">Hubungi</a>
+                    <a href="https://wa.me/6285133202006" class="btn btn-secondary" target="_blank">Hubungi</a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="image-placeholder">
                     <!-- Foto Profil Anda -->
-                    <img src="images/profile/profile.jpg" alt="Foto Profil" class="profile-img">
+                    <img src="images/profile/7f7d2c8f-7b41-4cc8-a52f-0899f58c17e0.jfif" alt="Foto Profil" class="profile-img">
                 </div>
             </div>
         </div>
@@ -2251,18 +2624,16 @@
                         playsinline
                         controls
                         poster="images/projects/vlog.png">
-                        <source src="videos/neng.mp4" type="video/mp4">
-                        <source src="videos/neng.webm" type="video/webm">
+                        <source src="videos/BREAKBEAT BAILAR _ BLACK HOLE SLOW REVERB LIRIK _ REMIX DJ TELOOR.mp4" type="video/mp4">
                         Browser Anda tidak mendukung video HTML5.
                     </video>
                 </div>
                 <div class="video-info">
-                    <h3>Video Showcase 2024</h3>
+                    <h3>Video Breakbeat</h3>
                     <p>Koleksi video terbaik dari berbagai proyek live streaming, video editing, dan konten kreatif yang telah saya kerjakan.</p>
                     <div class="video-stats">
-                        <span><i class="fas fa-eye"></i> 10K+ Views</span>
-                        <span><i class="fas fa-clock"></i> 3:45</span>
-                        <span><i class="fas fa-calendar"></i> 2024</span>
+                        <span><i class="fas fa-eye"></i> 15JT+ Views</span>
+                        <span><i class="fas fa-calendar"></i> 2026</span>
                     </div>
                 </div>
             </div>
@@ -2287,8 +2658,7 @@
                         <h4>Cinematic Vlog Editing</h4>
                         <p>Tutorial dan showcase editing vlog dengan style cinematic</p>
                         <div class="video-meta">
-                            <span><i class="fas fa-eye"></i> 5K</span>
-                            <span><i class="fas fa-clock"></i> 2:30</span>
+                            <span><i class="fas fa-eye"></i> 6JT</span>
                         </div>
                     </div>
                 </div>
@@ -2305,11 +2675,10 @@
                         </video>
                     </div>
                     <div class="video-card-info">
-                        <h4>Color Grading Masterclass</h4>
+                        <h4>Musik Video</h4>
                         <p>Teknik professional color grading untuk video</p>
                         <div class="video-meta">
-                            <span><i class="fas fa-eye"></i> 8K</span>
-                            <span><i class="fas fa-clock"></i> 5:15</span>
+                            <span><i class="fas fa-eye"></i> 8JT</span>
                         </div>
                     </div>
                 </div>
@@ -2332,8 +2701,7 @@
                         <h4>Motion Graphics Pack</h4>
                         <p>Koleksi motion graphics dan animasi untuk video</p>
                         <div class="video-meta">
-                            <span><i class="fas fa-eye"></i> 12K</span>
-                            <span><i class="fas fa-clock"></i> 4:00</span>
+                            <span><i class="fas fa-eye"></i> 4JT</span>
                         </div>
                     </div>
                 </div>
@@ -2373,47 +2741,54 @@
         <div class="container">
             <h2 class="section-title">Keahlian</h2>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card" data-skill="premiere-pro">
                     <div class="skill-icon">
-                        <i class="fab fa-html5"></i>
+                        <i class="fas fa-film"></i>
                     </div>
-                    <h3>HTML5</h3>
-                    <p>Struktur web semantik dan modern</p>
+                    <h3>Adobe Premiere Pro</h3>
+                    <p>Video editing profesional dan timeline editing</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="photoshop">
                     <div class="skill-icon">
-                        <i class="fab fa-css3-alt"></i>
+                        <i class="fas fa-image"></i>
                     </div>
-                    <h3>CSS3</h3>
-                    <p>Styling dan animasi yang menarik</p>
+                    <h3>Adobe Photoshop</h3>
+                    <p>Photo editing dan digital imaging</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="illustrator">
                     <div class="skill-icon">
-                        <i class="fab fa-js"></i>
+                        <i class="fas fa-pen-nib"></i>
                     </div>
-                    <h3>JavaScript</h3>
-                    <p>Interaktivitas dan fungsionalitas dinamis</p>
+                    <h3>Adobe Illustrator</h3>
+                    <p>Vector graphics dan logo design</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="lightroom">
                     <div class="skill-icon">
-                        <i class="fab fa-react"></i>
+                        <i class="fas fa-sun"></i>
                     </div>
-                    <h3>React</h3>
-                    <p>Aplikasi web modern dan scalable</p>
+                    <h3>Adobe Lightroom</h3>
+                    <p>Photo editing dan color correction</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="after-effects">
                     <div class="skill-icon">
-                        <i class="fab fa-node"></i>
+                        <i class="fas fa-magic"></i>
                     </div>
-                    <h3>Node.js</h3>
-                    <p>Backend development yang powerful</p>
+                    <h3>After Effects</h3>
+                    <p>Motion graphics dan visual effects</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="davinci-resolve">
                     <div class="skill-icon">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-palette"></i>
                     </div>
-                    <h3>Database</h3>
-                    <p>Manajemen data yang efisien</p>
+                    <h3>DaVinci Resolve</h3>
+                    <p>Professional color grading dan editing</p>
+                </div>
+                <div class="skill-card" data-skill="canva">
+                    <div class="skill-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>canva</h3>
+                    <p>Design grafis dan template profesional</p>
                 </div>
             </div>
         </div>
@@ -2437,7 +2812,10 @@
             <div class="projects-grid">
                 <div class="project-card" data-category="vlog" data-project="1">
                     <div class="project-image">
-                        <img src="images/projects/vlog.png" alt="Vlog Video/ Photo">
+                        <video autoplay muted loop playsinline>
+                            <source src="images/projects/Vlog.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
                         <div class="project-icon">
                             <i class="fas fa-video"></i>
                         </div>
@@ -2513,7 +2891,11 @@
             <div class="modal-content">
                 <div class="modal-gallery">
                     <div class="gallery-main">
-                        <img src="" alt="Project Screenshot" id="modalMainImage">
+                        <img src="" alt="Project Screenshot" id="modalMainImage" style="display: none;">
+                        <video id="modalMainVideo" controls style="display: none; width: 100%; height: 100%; object-fit: contain;">
+                            <source src="" type="video/mp4">
+                            Browser Anda tidak mendukung video.
+                        </video>
                         <button class="gallery-nav prev"><i class="fas fa-chevron-left"></i></button>
                         <button class="gallery-nav next"><i class="fas fa-chevron-right"></i></button>
                     </div>
@@ -2533,18 +2915,13 @@
                             <ul></ul>
                         </div>
                         <div class="detail-item">
-                            <strong>Durasi:</strong>
-                            <span></span>
-                        </div>
-                        <div class="detail-item">
                             <strong>Client:</strong>
                             <span></span>
                         </div>
-                        <div class="detail-item">
+                        <div class="detail-item" id="projectLinksContainer">
                             <strong>Link:</strong>
-                            <div class="modal-links">
-                                <a href="#" class="modal-link btn btn-primary" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                                <a href="#" class="modal-link btn btn-secondary" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <div class="modal-links" id="projectLinks">
+                                <!-- Links will be dynamically generated -->
                             </div>
                         </div>
                     </div>
@@ -2591,6 +2968,58 @@
             </div>
         </div>
     </div>
+
+    <!-- Skill Modal -->
+    <div id="skillModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content skill-modal-content">
+                <div class="skill-modal-body-wrapper">
+                    <!-- Left Side: Image -->
+                    <div class="skill-modal-image">
+                        <img id="skillModalImage" src="images/skills/premiere-pro.jpg" alt="Skill Preview">
+                        <div class="skill-image-overlay">
+                            <i id="skillModalImageIcon" class="fas fa-film"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Content -->
+                    <div class="skill-modal-body">
+                    <!-- Experience & Overview -->
+                    <div class="skill-section">
+                        <h3 id="skillModalExperienceTitle"><i class="fas fa-clock"></i> Pengalaman: 3+ Tahun</h3>
+                        <p id="skillModalDescription" class="skill-description">Deskripsi akan muncul di sini...</p>
+                    </div>
+
+                    <!-- Skill Progress Bars -->
+                    <div class="skill-section">
+                        <h3><i class="fas fa-chart-line"></i> Level Keahlian</h3>
+                        <div id="skillModalProgress" class="skill-progress-list">
+                            <!-- Progress bars will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Features Mastered -->
+                    <div class="skill-section">
+                        <h3><i class="fas fa-check-circle"></i> Fitur yang Dikuasai</h3>
+                        <ul id="skillModalFeatures" class="skill-features-list">
+                            <!-- Features will be inserted here -->
+                        </ul>
+                    </div>
+
+                    <!-- Example Projects -->
+                    <div class="skill-section">
+                        <h3><i class="fas fa-folder-open"></i> Contoh Proyek</h3>
+                        <div id="skillModalProjects" class="skill-projects-list">
+                            <!-- Projects will be inserted here -->
+                        </div>
+                    </div>
+                    </div> <!-- End skill-modal-body -->
+                </div> <!-- End skill-modal-body-wrapper -->
+            </div> <!-- End modal-content -->
+        </div> <!-- End modal-container -->
+    </div> <!-- End skillModal -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -2836,8 +3265,10 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-in');
-                    // Unobserve after animation to improve performance
-                    observer.unobserve(entry.target);
+                } else {
+                    // Remove animation class when element leaves viewport
+                    // so it can animate again when scrolling back
+                    entry.target.classList.remove('animate-in');
                 }
             });
         }, observerOptions);
@@ -3135,7 +3566,6 @@
                     'Audio mixing dan background music',
                     'Optimized untuk YouTube dan Instagram'
                 ],
-                duration: '2 Minggu',
                 client: 'Content Creator & Vlogger',
                 images: [
                     'images/projects/vlog.png',
@@ -3143,8 +3573,10 @@
                     'images/projects/vlog.png',
                     'images/projects/vlog.png'
                 ],
-                demoLink: '#',
-                repoLink: '#'
+                links: {
+                    youtube: 'https://youtube.com/@username',
+                    instagram: 'https://instagram.com/username'
+                }
             },
             '2': {
                 title: 'Folder Musik',
@@ -3158,16 +3590,21 @@
                     'Audio synchronization sempurna',
                     'Export dalam berbagai format'
                 ],
-                duration: '1 Bulan',
                 client: 'Independent Music Artist',
                 images: [
-                    'images/projects/musikk.jfif',
-                    'images/projects/musikk.jfif',
-                    'images/projects/musikk.jfif',
-                    'images/projects/musikk.jfif'
+                    'images/projects/live-videos/ormas.nomercy - 7633381140212108564.mp4',
+                    'images/projects/live-videos/You Don\'t Even Know Me Breakbeat Remix [ReyLimitLess].mp4',
+                    'images/projects/live-videos/aduhaduhduhhduh.mp4',
+                    'images/projects/live-videos/Melodynya ngajak terbang  Final Countdown -- EzzaJunior.mp4',
+                    'images/projects/live-videos/Let\'s fly.mp4',
+                    'images/projects/live-videos/ormas.nomercy - 7631610003618811156.mp4',
+                    'images/projects/live-videos/Middle - Dj Breakbeat by  BeatMap x  KEDUT - Special Req By.mp4'
                 ],
-                demoLink: '#',
-                repoLink: '#'
+                links: {
+                    youtube: 'https://youtube.com/@username',
+                    tiktok: 'https://tiktok.com/@username',
+                    instagram: 'https://instagram.com/username'
+                }
             },
             '3': {
                 title: 'Motion Graphics Package',
@@ -3181,7 +3618,6 @@
                     'Social media templates',
                     'Fully customizable elements'
                 ],
-                duration: '3 Minggu',
                 client: 'Digital Marketing Agency',
                 images: [
                     'images/projects/motion.jfif',
@@ -3189,8 +3625,10 @@
                     'images/projects/motion.jfif',
                     'images/projects/motion.jfif'
                 ],
-                demoLink: '#',
-                repoLink: '#'
+                links: {
+                    behance: 'https://behance.net/username',
+                    instagram: 'https://instagram.com/username'
+                }
             }
         };
 
@@ -3284,23 +3722,40 @@
                     ).join('');
                 }
             }
-
-            // Update duration (third detail-item)
-            if (detailItems[2]) {
-                const durationSpan = detailItems[2].querySelector('span');
-                if (durationSpan) durationSpan.textContent = project.duration;
-            }
             
-            // Update client (fourth detail-item)
-            if (detailItems[3]) {
-                const clientSpan = detailItems[3].querySelector('span');
+            // Update client (third detail-item, was fourth)
+            if (detailItems[2]) {
+                const clientSpan = detailItems[2].querySelector('span');
                 if (clientSpan) clientSpan.textContent = project.client;
             }
 
-            // Update links
-            const modalLinks = document.querySelectorAll('.modal-link');
-            if (modalLinks[0]) modalLinks[0].href = project.demoLink;
-            if (modalLinks[1]) modalLinks[1].href = project.repoLink;
+            // Update links dynamically
+            const projectLinksContainer = document.getElementById('projectLinks');
+            if (projectLinksContainer && project.links) {
+                // Platform configuration with icons and labels
+                const platformConfig = {
+                    youtube: { icon: 'fab fa-youtube', label: 'YouTube', color: 'primary' },
+                    instagram: { icon: 'fab fa-instagram', label: 'Instagram', color: 'secondary' },
+                    tiktok: { icon: 'fab fa-tiktok', label: 'TikTok', color: 'primary' },
+                    facebook: { icon: 'fab fa-facebook', label: 'Facebook', color: 'primary' },
+                    twitter: { icon: 'fab fa-twitter', label: 'Twitter', color: 'secondary' },
+                    behance: { icon: 'fab fa-behance', label: 'Behance', color: 'primary' },
+                    dribbble: { icon: 'fab fa-dribbble', label: 'Dribbble', color: 'secondary' },
+                    github: { icon: 'fab fa-github', label: 'GitHub', color: 'primary' },
+                    website: { icon: 'fas fa-globe', label: 'Website', color: 'primary' },
+                    demo: { icon: 'fas fa-external-link-alt', label: 'Live Demo', color: 'primary' }
+                };
+
+                // Generate link buttons
+                projectLinksContainer.innerHTML = Object.keys(project.links).map(platform => {
+                    const config = platformConfig[platform] || { icon: 'fas fa-link', label: platform, color: 'primary' };
+                    return `
+                        <a href="${project.links[platform]}" class="modal-link btn btn-${config.color}" target="_blank">
+                            <i class="${config.icon}"></i> ${config.label}
+                        </a>
+                    `;
+                }).join('');
+            }
 
             // Setup gallery
             setupGallery(project.images);
@@ -3313,6 +3768,13 @@
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Stop video if playing
+            const mainVideo = document.getElementById('modalMainVideo');
+            if (mainVideo) {
+                mainVideo.pause();
+                mainVideo.currentTime = 0;
+            }
         }
 
         // Close modal events
@@ -3332,19 +3794,50 @@
         });
 
         // ===== Image Gallery Functionality =====
+        function isVideo(filename) {
+            const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov'];
+            return videoExtensions.some(ext => filename.toLowerCase().endsWith(ext));
+        }
+
         function setupGallery(images) {
             const mainImage = document.getElementById('modalMainImage');
+            const mainVideo = document.getElementById('modalMainVideo');
             const thumbnailsContainer = document.querySelector('.gallery-thumbnails');
             
-            // Set main image
-            mainImage.src = images[0];
+            // Set main media (image or video)
+            const firstMedia = images[0];
+            if (isVideo(firstMedia)) {
+                mainImage.style.display = 'none';
+                mainVideo.style.display = 'block';
+                mainVideo.querySelector('source').src = firstMedia;
+                mainVideo.load();
+            } else {
+                mainVideo.style.display = 'none';
+                mainImage.style.display = 'block';
+                mainImage.src = firstMedia;
+            }
             
             // Create thumbnails
-            thumbnailsContainer.innerHTML = images.map((img, index) => `
-                <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}">
-                    <img src="${img}" alt="Thumbnail ${index + 1}">
-                </div>
-            `).join('');
+            thumbnailsContainer.innerHTML = images.map((media, index) => {
+                if (isVideo(media)) {
+                    return `
+                        <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}">
+                            <video muted>
+                                <source src="${media}" type="video/mp4">
+                            </video>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 24px;">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}">
+                            <img src="${media}" alt="Thumbnail ${index + 1}">
+                        </div>
+                    `;
+                }
+            }).join('');
 
             // Add thumbnail click events
             const thumbnails = thumbnailsContainer.querySelectorAll('.thumbnail');
@@ -3361,12 +3854,30 @@
             
             currentImageIndex = index;
             const mainImage = document.getElementById('modalMainImage');
-            mainImage.style.opacity = '0';
+            const mainVideo = document.getElementById('modalMainVideo');
+            const currentMedia = currentProjectImages[index];
             
-            setTimeout(() => {
-                mainImage.src = currentProjectImages[index];
-                mainImage.style.opacity = '1';
-            }, 150);
+            // Pause video if playing
+            if (mainVideo.style.display === 'block') {
+                mainVideo.pause();
+            }
+            
+            // Show appropriate media type
+            if (isVideo(currentMedia)) {
+                mainImage.style.display = 'none';
+                mainVideo.style.display = 'block';
+                mainVideo.querySelector('source').src = currentMedia;
+                mainVideo.load();
+            } else {
+                mainVideo.style.display = 'none';
+                mainImage.style.display = 'block';
+                mainImage.style.opacity = '0';
+                
+                setTimeout(() => {
+                    mainImage.src = currentMedia;
+                    mainImage.style.opacity = '1';
+                }, 150);
+            }
 
             // Update active thumbnail
             const thumbnails = document.querySelectorAll('.thumbnail');
@@ -3532,6 +4043,383 @@
             videoModalOverlay.addEventListener('click', closeVideoModal);
         }
 
+        // ===== Skill Modal Functionality =====
+        const skillsData = {
+            'premiere-pro': {
+                title: 'Adobe Premiere Pro',
+                icon: 'fas fa-film',
+                image: 'images/skills/premiere-pro.jpg',
+                level: 'Advanced',
+                levelColor: '#9333ea',
+                experience: {
+                    years: '1 Tahun',
+                    description: 'Dalam 1 tahun intensif, saya telah menguasai seluruh aspek video editing profesional di Adobe Premiere Pro.\n\nMenguasai teknik dari basic cutting hingga advanced multi-camera editing, color grading dengan Lumetri Color, audio mixing profesional, dan motion graphics integration. Mampu menghandle project kompleks dengan timeline multi-layer dan menerapkan color correction yang presisi.\n\nWorkflow optimization dengan proxy editing untuk performa maksimal. Pengalaman mencakup berbagai genre: cinematic vlogs, commercial ads, music videos, dan documentary storytelling.'
+                },
+                progress: [
+                    { name: 'Timeline & Cutting', percentage: 95 },
+                    { name: 'Color Grading', percentage: 90 },
+                    { name: 'Audio Mixing', percentage: 88 },
+                    { name: 'Effects & Motion', percentage: 92 }
+                ],
+                features: [
+                    'Multi-camera Editing',
+                    'Lumetri Color Grading',
+                    'Audio Mixing & Mastering',
+                    'Proxy Workflow',
+                    'Essential Graphics',
+                    'Keyframe Animation',
+                    'Speed Ramping',
+                    'Export Optimization',
+                    'Nested Sequences',
+                    'Dynamic Link',
+                    'Green Screen Keying',
+                    'Stabilization & Tracking'
+                ],
+                projects: [
+                    { name: 'Cinematic Vlog Series', category: 'Vlog' },
+                    { name: 'Product Commercial', category: 'Commercial' },
+                    { name: 'Documentary Short', category: 'Documentary' }
+                ]
+            },
+            'photoshop': {
+                title: 'Adobe Photoshop',
+                icon: 'fas fa-image',
+                image: 'images/skills/photoshop.jpg',
+                level: 'Advanced',
+                levelColor: '#3b82f6',
+                experience: {
+                    years: '1 Tahun',
+                    description: 'Dalam 1 tahun intensif, saya telah menguasai seluruh aspek photo editing dan digital manipulation di Adobe Photoshop.\n\nMampu menghandle berbagai project: portrait retouching profesional dengan frequency separation, photo manipulation kompleks dengan multiple layers, color grading presisi menggunakan adjustment layers dan curves, serta pembuatan thumbnail YouTube yang eye-catching.\n\nMenguasai non-destructive editing workflow dengan smart objects, layer masking yang detail, dan batch processing untuk efisiensi maksimal.'
+                },
+                progress: [
+                    { name: 'Photo Retouching', percentage: 92 },
+                    { name: 'Color Grading', percentage: 88 },
+                    { name: 'Compositing', percentage: 85 },
+                    { name: 'Thumbnail Design', percentage: 95 }
+                ],
+                features: [
+                    'Advanced Retouching',
+                    'Frequency Separation',
+                    'Layer Masking',
+                    'Color Correction',
+                    'Photo Manipulation',
+                    'Thumbnail Creation',
+                    'Batch Processing',
+                    'Smart Objects',
+                    'Adjustment Layers',
+                    'Curves & Levels',
+                    'Selection Tools',
+                    'Blending Modes'
+                ],
+                projects: [
+                    { name: 'YouTube Thumbnails', category: 'Design' },
+                    { name: 'Portrait Retouching', category: 'Photography' },
+                    { name: 'Social Media Graphics', category: 'Marketing' }
+                ]
+            },
+            'illustrator': {
+                title: 'Adobe Illustrator',
+                icon: 'fas fa-pen-nib',
+                image: 'images/skills/illustrator.jpg',
+                level: 'Advanced',
+                levelColor: '#10b981',
+                experience: {
+                    years: '1 Tahun',
+                    description: 'Dalam 1 tahun, saya telah menguasai vector graphics design dari dasar hingga advanced level.\n\nMahir dalam logo creation dengan konsep kuat, icon design yang clean dan scalable, serta pembuatan graphic elements untuk video editing seperti lower thirds, badges, dan animated shapes.\n\nMenguasai pen tool dengan presisi tinggi, pathfinder untuk shape manipulation kompleks, typography design profesional, dan color theory untuk palette harmonis. Assets dioptimalkan untuk berbagai platform: web, print, dan video integration.'
+                },
+                progress: [
+                    { name: 'Vector Design', percentage: 88 },
+                    { name: 'Logo Design', percentage: 85 },
+                    { name: 'Icon Creation', percentage: 90 },
+                    { name: 'Typography', percentage: 82 }
+                ],
+                features: [
+                    'Vector Graphics',
+                    'Logo Design',
+                    'Icon Creation',
+                    'Typography',
+                    'Pen Tool Mastery',
+                    'Pathfinder Tools',
+                    'Color Palette',
+                    'Export for Web',
+                    'Shape Builder',
+                    'Gradient Mesh',
+                    'Pattern Design',
+                    'Artboard Management'
+                ],
+                projects: [
+                    { name: 'Channel Logo', category: 'Branding' },
+                    { name: 'Lower Thirds Pack', category: 'Video Assets' },
+                    { name: 'Icon Set Design', category: 'Graphics' }
+                ]
+            },
+            'lightroom': {
+                title: 'Adobe Lightroom',
+                icon: 'fas fa-sun',
+                image: 'images/skills/lightroom.jpg',
+                level: 'Advanced',
+                levelColor: '#3b82f6',
+                experience: {
+                    years: '1 Tahun',
+                    description: 'Dalam 1 tahun, saya telah menguasai photo enhancement dan color correction workflow di Adobe Lightroom.\n\nAhli dalam RAW processing dengan kontrol penuh atas exposure, highlights, shadows, dan white balance. Menguasai HSL adjustments untuk selective color grading, tone curve untuk fine-tuning contrast, dan split toning untuk creative looks.\n\nMahir dalam preset creation untuk consistent style, batch processing untuk efisiensi editing ratusan foto sekaligus, serta lens correction dan perspective adjustments. Workflow mencakup catalog management dan export optimization.'
+                },
+                progress: [
+                    { name: 'Color Correction', percentage: 90 },
+                    { name: 'Exposure Adjustment', percentage: 92 },
+                    { name: 'Preset Creation', percentage: 88 },
+                    { name: 'Batch Processing', percentage: 95 }
+                ],
+                features: [
+                    'RAW Processing',
+                    'Color Grading',
+                    'Preset Management',
+                    'Batch Editing',
+                    'Lens Correction',
+                    'HSL Adjustments',
+                    'Tone Curve',
+                    'Export Presets',
+                    'Split Toning',
+                    'Catalog Management',
+                    'Smart Collections',
+                    'Perspective Correction'
+                ],
+                projects: [
+                    { name: 'Event Photography', category: 'Photography' },
+                    { name: 'Product Photos', category: 'Commercial' },
+                    { name: 'Portrait Series', category: 'Portrait' }
+                ]
+            },
+            'after-effects': {
+                title: 'After Effects',
+                icon: 'fas fa-magic',
+                image: 'images/skills/after-effects.jpg',
+                level: 'Advanced',
+                levelColor: '#9333ea',
+                experience: {
+                    years: '1 Tahun',
+                    description: 'Dalam 1 tahun intensif, saya telah menguasai motion graphics dan visual effects di After Effects.\n\nMahir dalam keyframe animation dengan easing smooth, text animation dinamis untuk titles dan lower thirds, shape layers untuk motion design, serta compositing multi-layer kompleks.\n\nMenguasai expressions untuk automation, tracking & stabilization untuk VFX integration, masking & rotoscoping presisi, dan 3D camera movement. Workflow mencakup Dynamic Link dengan Premiere Pro dan render optimization dengan Media Encoder.'
+                },
+                progress: [
+                    { name: 'Motion Graphics', percentage: 90 },
+                    { name: 'Visual Effects', percentage: 85 },
+                    { name: 'Animation', percentage: 88 },
+                    { name: 'Compositing', percentage: 87 }
+                ],
+                features: [
+                    'Motion Graphics',
+                    'Keyframe Animation',
+                    'Visual Effects',
+                    'Text Animation',
+                    'Shape Layers',
+                    'Expressions',
+                    'Tracking & Stabilization',
+                    'Render Queue',
+                    'Masking & Rotoscoping',
+                    '3D Camera',
+                    'Pre-composing',
+                    'Dynamic Link'
+                ],
+                projects: [
+                    { name: 'Channel Intro', category: 'Motion' },
+                    { name: 'Lower Thirds Animation', category: 'Graphics' },
+                    { name: 'Logo Animation', category: 'Branding' }
+                ]
+            },
+            'davinci-resolve': {
+                title: 'DaVinci Resolve',
+                icon: 'fas fa-palette',
+                image: 'images/skills/davinci-resolve.jpg',
+                level: 'Advanced',
+                levelColor: '#9333ea',
+                experience: {
+                    years: '1 Tahun',
+                    description: 'Dalam 1 tahun, saya telah menguasai professional color grading dan color correction di DaVinci Resolve.\n\nAhli dalam node-based workflow untuk non-destructive grading, color wheels untuk primary corrections, curves untuk precise adjustments, dan qualifier untuk selective color isolation.\n\nMenguasai LUT management untuk consistent looks, scopes analysis (waveform, vectorscope, histogram) untuk technical accuracy, power windows untuk targeted corrections, dan HDR grading fundamentals. Workflow mencakup shot matching dan creative grading untuk cinematic looks.'
+                },
+                progress: [
+                    { name: 'Color Grading', percentage: 90 },
+                    { name: 'Color Correction', percentage: 92 },
+                    { name: 'Node Workflow', percentage: 88 },
+                    { name: 'LUT Management', percentage: 85 }
+                ],
+                features: [
+                    'Professional Color Grading',
+                    'Node-based Workflow',
+                    'Color Wheels & Curves',
+                    'LUT Application',
+                    'HDR Grading',
+                    'Scopes Analysis',
+                    'Power Windows',
+                    'Render Optimization',
+                    'Qualifier Tools',
+                    'Shot Matching',
+                    'Creative Looks',
+                    'Delivery Presets'
+                ],
+                projects: [
+                    { name: 'Cinematic Color Grade', category: 'Color' },
+                    { name: 'Music Video Grading', category: 'Music' },
+                    { name: 'Commercial Look', category: 'Commercial' }
+                ]
+            },
+            'canva': {
+                title: 'Canva',
+                icon: 'fas fa-palette',
+                image: 'images/skills/canva.jpg',
+                level: 'Advanced',
+                levelColor: '#3b82f6',
+                experience: {
+                    years: '1 Tahun',
+                    description: 'Dalam 1 tahun, saya telah menguasai rapid design workflow di Canva untuk berbagai kebutuhan content creation.\n\nMahir dalam social media design dengan template customization yang on-brand, presentation design yang engaging dan professional, marketing materials seperti flyers dan posters, serta video templates untuk quick social media content.\n\nMenguasai brand kit management untuk consistency, photo editing tools untuk quick enhancements, typography pairing untuk visual hierarchy, dan team collaboration features. Workflow mencakup design system creation dan multi-platform export optimization.'
+                },
+                progress: [
+                    { name: 'Social Media Design', percentage: 93 },
+                    { name: 'Template Customization', percentage: 90 },
+                    { name: 'Brand Kit Management', percentage: 88 },
+                    { name: 'Quick Design', percentage: 95 }
+                ],
+                features: [
+                    'Social Media Templates',
+                    'Brand Kit Setup',
+                    'Quick Design',
+                    'Photo Editing',
+                    'Video Templates',
+                    'Presentation Design',
+                    'Marketing Materials',
+                    'Team Collaboration',
+                    'Typography Pairing',
+                    'Asset Library',
+                    'Multi-platform Export',
+                    'Design System'
+                ],
+                projects: [
+                    { name: 'Instagram Post Series', category: 'Social Media' },
+                    { name: 'YouTube Banners', category: 'Branding' },
+                    { name: 'Marketing Flyers', category: 'Marketing' }
+                ]
+            }
+        };
+
+        const skillModal = document.getElementById('skillModal');
+        
+        // Defensive check: only initialize if modal exists
+        if (skillModal) {
+            const skillModalOverlay = skillModal.querySelector('.modal-overlay');
+            const skillModalClose = skillModal.querySelector('.modal-close');
+            const skillCardsClickable = document.querySelectorAll('.skill-card[data-skill]');
+
+            console.log('🎯 Skill Modal: Initializing...', {
+                skillModal: skillModal,
+                skillCardsFound: skillCardsClickable.length
+            });
+
+            // Open Skill Modal - Klik skill card untuk membuka detail
+            skillCardsClickable.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const skillId = card.getAttribute('data-skill');
+                const skill = skillsData[skillId];
+                
+                if (skill) {
+                    openSkillModal(skill);
+                } else {
+                    console.error('Skill not found for ID:', skillId);
+                }
+            });
+
+            // Tambahkan visual feedback saat hover
+            card.style.cursor = 'pointer';
+        });
+
+        function openSkillModal(skill) {
+            // Update image
+            const skillImage = document.getElementById('skillModalImage');
+            const skillImageIcon = document.getElementById('skillModalImageIcon');
+            if (skill.image) {
+                skillImage.src = skill.image;
+                skillImage.alt = skill.title + ' Preview';
+                skillImageIcon.className = skill.icon;
+            }
+
+            // Update experience section
+            document.getElementById('skillModalExperienceTitle').innerHTML = `<i class="fas fa-clock"></i> Pengalaman: ${skill.experience.years}`;
+            document.getElementById('skillModalDescription').textContent = skill.experience.description;
+
+            // Update progress bars
+            const progressSection = skillModal.querySelector('.skill-section:nth-child(2)');
+            const progressContainer = progressSection.querySelector('.skill-progress-list');
+            progressContainer.innerHTML = skill.progress.map(item => `
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>${item.name}</span>
+                        <span class="progress-percentage">${item.percentage}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${item.percentage}%"></div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update features list
+            const featuresSection = skillModal.querySelector('.skill-section:nth-child(3)');
+            const featuresList = featuresSection.querySelector('.skill-features-list');
+            featuresList.innerHTML = skill.features.map(feature => `
+                <li class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>${feature}</span>
+                </li>
+            `).join('');
+
+            // Update projects showcase
+            const projectsSection = skillModal.querySelector('.skill-section:nth-child(4)');
+            const projectsList = projectsSection.querySelector('.skill-projects-list');
+            projectsList.innerHTML = skill.projects.map(project => `
+                <div class="project-item">
+                    <div class="project-item-icon">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <div class="project-item-info">
+                        <h4>${project.name}</h4>
+                        <span>${project.category}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Show modal
+            skillModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Trigger progress bar animation
+            setTimeout(() => {
+                const progressFills = skillModal.querySelectorAll('.progress-fill');
+                progressFills.forEach(fill => {
+                    fill.style.transition = 'width 1s ease-out';
+                });
+            }, 100);
+        }
+
+        function closeSkillModal() {
+            skillModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close skill modal events
+        if (skillModalClose) {
+            skillModalClose.addEventListener('click', closeSkillModal);
+        }
+
+        if (skillModalOverlay) {
+            skillModalOverlay.addEventListener('click', closeSkillModal);
+        }
+
+            // Close skill modal with ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && skillModal.classList.contains('active')) {
+                    closeSkillModal();
+                }
+            });
+        } // End of if (skillModal) check
+
         // Close video modal with ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && videoModal.classList.contains('active')) {
@@ -3686,7 +4574,7 @@
                     });
                 }
             });
-        }, observerOptions);
+        }, counterObserverOptions);
 
         // Observe the stats section
         const aboutStats = document.querySelector('.about-stats');
