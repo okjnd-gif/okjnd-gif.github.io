@@ -2841,11 +2841,14 @@
                 <div class="video-card" data-video="2">
                     <div class="video-wrapper">
                         <video
+                            autoplay
+                            muted
                             loop
                             playsinline
                             controls
                             poster="images/projects/musikk.jfif">
-                            <source src="videos/AVENGED SEVENFOLD BEST OF ROCK SONG COLLECTION 2025💀.mp4" type="video/mp4">
+                            <source src="videos/httpsyoutu.beqFYYexYfp4Qsi=JY_MrJOx_byUbHlO.mp4" type="video/mp4">
+                            <source src="videos/httpsyoutu.beqFYYexYfp4Qsi=JY_MrJOx_byUbHlO.mp4" type="video/webm">
                             Browser Anda tidak mendukung video HTML5.
                         </video>
                     </div>
@@ -2877,6 +2880,27 @@
                         <p>Koleksi motion graphics dan animasi untuk video</p>
                         <div class="video-meta">
                             <span><i class="fas fa-eye"></i> 4JT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card" data-video="4">
+                    <div class="video-wrapper">
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            controls>
+                            <source src="images/projects/live-videos/Fly.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
+                    </div>
+                    <div class="video-card-info">
+                        <h4>Live Streaming</h4>
+                        <p>Konten live streaming dan interaksi dengan komunitas</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-eye"></i> 12JT</span>
                         </div>
                     </div>
                 </div>
@@ -4155,10 +4179,10 @@
                 releaseDate: 'Desember 2024'
             },
             '2': {
-                title: 'Color Grading Masterclass',
+                title: 'Musik Video',
                 category: 'Color Grading',
                 description: 'Demonstrasi teknik color grading profesional dengan hasil yang memukau. Menampilkan berbagai style grading dari cinematic look hingga commercial style dengan musik background yang engaging.',
-                videoSrc: 'videos/AVENGED SEVENFOLD BEST OF ROCK SONG COLLECTION 2025💀.mp4',
+                videoSrc: 'videos/httpsyoutu.beqFYYexYfp4Qsi=JY_MrJOx_byUbHlO.mp4',
                 tools: ['DaVinci Resolve', 'Color Wheels', 'LUTs'],
                 views: '89K',
                 duration: '5:20',
@@ -4207,10 +4231,39 @@
             document.getElementById('videoModalCategory').textContent = video.category;
             document.getElementById('videoModalDescription').textContent = video.description;
 
-            // Update video source
-            const videoSource = modalVideoElement.querySelector('source');
-            videoSource.src = video.videoSrc;
-            modalVideoElement.load();
+            const videoPlayerContainer = videoModal.querySelector('.modal-video-player');
+            
+            // Check if it's a YouTube video
+            if (video.isYouTube) {
+                // Replace video element with iframe for YouTube
+                videoPlayerContainer.innerHTML = `
+                    <iframe
+                        id="youtubePlayer"
+                        width="100%"
+                        height="100%"
+                        src="${video.videoSrc}?autoplay=1"
+                        title="${video.title}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    </iframe>
+                `;
+            } else {
+                // Use regular video element for local videos
+                if (!videoPlayerContainer.querySelector('video')) {
+                    videoPlayerContainer.innerHTML = `
+                        <video id="modalVideo" controls>
+                            <source src="" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
+                    `;
+                }
+                const videoElement = videoPlayerContainer.querySelector('video');
+                const videoSource = videoElement.querySelector('source');
+                videoSource.src = video.videoSrc;
+                videoElement.load();
+            }
 
             // Get all detail items in video modal
             const videoDetailItems = videoModal.querySelectorAll('.detail-item');
@@ -4244,9 +4297,24 @@
             videoModal.classList.remove('active');
             document.body.style.overflow = '';
             
-            // Pause and reset video when closing modal
-            modalVideoElement.pause();
-            modalVideoElement.currentTime = 0;
+            const videoPlayerContainer = videoModal.querySelector('.modal-video-player');
+            const videoElement = videoPlayerContainer.querySelector('video');
+            const youtubeIframe = videoPlayerContainer.querySelector('iframe');
+            
+            // Stop video playback
+            if (videoElement) {
+                videoElement.pause();
+                videoElement.currentTime = 0;
+            }
+            
+            // Stop YouTube video by removing iframe
+            if (youtubeIframe) {
+                const src = youtubeIframe.src;
+                youtubeIframe.src = '';
+                setTimeout(() => {
+                    youtubeIframe.src = src.replace('?autoplay=1', '');
+                }, 100);
+            }
         }
 
         // Close video modal events
