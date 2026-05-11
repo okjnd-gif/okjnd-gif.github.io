@@ -6,11 +6,9 @@
     <meta name="description" content="Portfolio Website - Menampilkan proyek dan keahlian saya">
     <title>Portfolio Saya</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="D:\jule\portopolio\images\profile\download.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="D:\jule\portopolio\images\profile\download.png?v=1">
-    <link rel="icon" type="image/png" sizes="32x32" href="D:\jule\portopolio\images\profile\download.png?v=1">
-    <link rel="icon" type="image/png" sizes="192x192" href="D:\jule\portopolio\images\profile\download.png?v=1">
-    <link rel="apple-touch-icon" href="D:\jule\portopolio\images\profile\download.png?v=1">
+    <link rel="shortcut icon" href="images/profile/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/profile/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/profile/favicon.ico">
     
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -50,6 +48,24 @@
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ===== Light Mode Variables ===== */
+        [data-theme="light"] {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --bg-primary: rgba(255, 255, 255, 0.95);
+            --bg-secondary: rgba(249, 250, 251, 0.9);
+            --bg-dark: #f3f4f6;
+            --bg-overlay: rgba(255, 255, 255, 0.3);
+            --border-color: rgba(209, 213, 219, 0.6);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
         /* ===== Reset & Base Styles ===== */
@@ -340,6 +356,32 @@
 
         .theme-toggle i {
             transition: var(--transition);
+            color: inherit;
+        }
+
+        /* Ensure theme toggle is visible in both themes */
+        [data-theme="light"] .theme-toggle {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: #6366f1;
+        }
+
+        [data-theme="light"] .theme-toggle:hover {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
 
         /* ===== Hero Section ===== */
@@ -894,7 +936,7 @@
         .project-card {
             background: var(--bg-primary);
             border-radius: 12px;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: var(--shadow-md);
             transition: var(--transition);
             border: 1px solid var(--border-color);
@@ -1402,7 +1444,7 @@
             box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
         }
 
-        .thumbnail.active {
+        .thumbnail:hover {
             border-color: var(--primary-color);
             opacity: 1;
         }
@@ -2799,7 +2841,7 @@
                         playsinline
                         controls
                         poster="images/projects/vlog.png">
-                        <source src="videos/BREAKBEAT BAILAR _ BLACK HOLE SLOW REVERB LIRIK _ REMIX DJ TELOOR.mp4" type="video/mp4">
+                        <source src="file://D:/jule/portopolio/videos/3D.mp4" type="video/mp4">
                         Browser Anda tidak mendukung video HTML5.
                     </video>
                 </div>
@@ -2869,15 +2911,14 @@
                             loop
                             playsinline
                             controls
-                            poster="images/projects/motion.jfif">
-                            <source src="videos/motion-graphics.mp4" type="video/mp4">
-                            <source src="videos/motion-graphics.webm" type="video/webm">
+                            poster="images/projects/Editing.jfif">
+                            <source src="videos/thourw.mp4" type="video/mp4">
                             Browser Anda tidak mendukung video HTML5.
                         </video>
                     </div>
                     <div class="video-card-info">
-                        <h4>Motion Graphics Pack</h4>
-                        <p>Koleksi motion graphics dan animasi untuk video</p>
+                        <h4>Hasil Editing</h4>
+                        <p>Koleksi hasil editing video yang telah diselesaikan</p>
                         <div class="video-meta">
                             <span><i class="fas fa-eye"></i> 4JT</span>
                         </div>
@@ -3031,12 +3072,16 @@
                             <span class="tag">Premiere Pro</span>
                             <span class="tag">Lightroom</span>
                             <span class="tag">Photoshop</span>
+                            <span class="tag">Canva</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card" data-category="editing" data-project="2">
                     <div class="project-image">
-                        <img src="images/projects/musikk.jfif" alt="Folder Musik">
+                        <video autoplay muted loop playsinline>
+                            <source src="images/projects/musik.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
                         <div class="project-icon">
                             <i class="fas fa-film"></i>
                         </div>
@@ -3051,7 +3096,7 @@
                         <p>Produksi music video dengan color grading profesional dan visual storytelling yang kuat</p>
                         <div class="project-tags">
                             <span class="tag">DaVinci Resolve</span>
-                            <span class="tag">After Effects</span>
+                            <span class="tag">Music Production</span>
                             <span class="tag">Color Grading</span>
                         </div>
                     </div>
@@ -3059,7 +3104,7 @@
                 <div class="project-card" data-category="motion" data-project="3">
                     <div class="project-image">
                         <video autoplay muted loop playsinline>
-                            <source src="images/projects/Studio%20ndowee.mp4" type="video/mp4">
+                            <source src="images/projects/spider.mp4" type="video/mp4">
                             Browser Anda tidak mendukung video HTML5.
                         </video>
                         <div class="project-icon">
@@ -3071,13 +3116,18 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <span class="project-category">Motion Graphics</span>
-                        <h3>Motion Graphics Package</h3>
-                        <p>Paket motion graphics lengkap untuk branding channel dengan animasi smooth dan modern</p>
+                        <span class="project-category">Hasil Editing</span>
+                        <h3>Hasil Editing</h3>
+                        <p>Hasil editing video profesional dengan efek visual yang menarik dan kualitas gambar yang tinggi</p>
                         <div class="project-tags">
-                            <span class="tag">After Effects</span>
-                            <span class="tag">Cinema 4D</span>
+                            <span class="tag">DaVinci Resolve</span>
+                            <span class="tag">Color Grading</span>
                             <span class="tag">Illustrator</span>
+                            <span class="tag">After Effects</span>
+                            <span class="tag">Premiere Pro</span>
+                            <span class="tag">Canva</span>
+                            <span class="tag">Photoshop</span>
+                            <span class="tag">Lightroom</span>
                         </div>
                     </div>
                 </div>
@@ -3848,7 +3898,7 @@
                 title: 'Motion Graphics Package',
                 category: 'Motion Graphics',
                 description: 'Paket motion graphics lengkap untuk branding dan konten digital. Termasuk logo animation, lower thirds, transitions, dan berbagai elemen grafis animasi yang modern dan eye-catching.',
-                technologies: ['After Effects', 'Cinema 4D', 'Illustrator', 'Element 3D'],
+                technologies: ['DaVinci Resolve', 'Color Grading', 'Illustrator', 'After Effects', 'Premiere Pro', 'Canva', 'Photoshop', 'Lightroom'],
                 features: [
                     '3D logo animation',
                     'Custom transitions pack',
@@ -3858,11 +3908,11 @@
                 ],
                 client: 'Digital Marketing Agency',
                 images: [
-                    'images/projects/thumbnails/Studio ndowee.mp4',
-                    'images/projects/motion.jfif',
-                    'images/projects/motion.jfif',
-                    'images/projects/motion.jfif',
-                    'images/projects/motion.jfif'
+                    'images/projects/Studio ndowee.mp4',
+                    'images/projects/thumbnails/But I Set Fire - My New Pack is live with updated coaching and comic background-sfx link in bio.mp4',
+                    'images/projects/thumbnails/locked out of heaven x Spiderman --.mp4',
+                    'images/projects/thumbnails/we are just friends...mp4',
+                    'images/projects/thumbnails/[Beauty and a Beat x My hero academy]  - -.mp4'
                 ],
                 links: {
                     behance: 'https://behance.net/username',
@@ -4061,7 +4111,7 @@
                 if (isVideo(media)) {
                     return `
                         <div class="thumbnail ${index === 0 ? 'active' : ''}" data-index="${index}">
-                            <video muted>
+                            <video autoplay muted loop>
                                 <source src="${media}" type="video/mp4">
                             </video>
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 24px;">
